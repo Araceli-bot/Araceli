@@ -16,8 +16,8 @@ class profile extends Command
         this.log("Loaded!");
         cloudinary.config({
             cloud_name: 'araceli',
-            api_key: '123172219855329',
-            api_secret: 'XkCmY6K4kX14yWSENu4ynPNja60'
+            api_key: '',
+            api_secret: ''
         });
     }
 
