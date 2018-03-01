@@ -1,6 +1,6 @@
 const config = {
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
-  'token': '';
+  'token': '',
 };
 
 module.exports = config;
