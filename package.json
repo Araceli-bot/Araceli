@@ -19,6 +19,7 @@
   "dependencies": {
     "bad-words": "^1.6.1",
     "badwords-list": "^1.0.0",
+    "chalk": "^2.3.1",
     "chucknorris-quotes": "^1.0.1",
     "death": "^1.1.0",
     "discord.js": "github:hydrabolt/discord.js#2e0048add1036c4648a99cd6a780280b6dd4ce9b",
@@ -31,6 +32,7 @@
     "jimp": "^0.2.28",
     "mathjs": "^3.20.1",
     "minecraft-data": "^2.21.0",
+    "moment": "^2.20.1",
     "mongodb": "^3.0.2",
     "node-opus": "^0.2.7",
     "one-liner-joke": "^1.0.0",
