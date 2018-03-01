@@ -65,7 +65,7 @@ function init(){
             console.log("Loaded plugin " + commandPath + items[i]);
         }
         CommandManager = new commandmanager(commands, this, client, prefix, url, DBManager);
-        client.login('Mzg5OTE2OTA0NTgxNDk2ODMy.DRCiSw.-2ufxbzuab7fVIi2Re62UvUnW28');
+        client.login(config.token);
     });
 }
 
