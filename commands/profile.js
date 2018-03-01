@@ -1,7 +1,6 @@
 var Jimp = require("jimp");
 const Discord = require('discord.js');
 const Command = require("../src/Command");
-var cloudinary = require('cloudinary');
 
 class profile extends Command
 {
@@ -14,11 +13,6 @@ class profile extends Command
 
     onLoad() {
         this.log("Loaded!");
-        cloudinary.config({
-            cloud_name: 'araceli',
-            api_key: '',
-            api_secret: ''
-        });
     }
 
     execute(message, args, bot) {
@@ -34,18 +28,8 @@ class profile extends Command
                         image.print(font, 300/2, 120, "XP: " + user.xp);
                         image.print(font, 300/2, 160, "Money: $" + user.money);
                         image.print(font, 300/2, 200, "Reputation: " + user.reputation);
-                        image.getBase64(Jimp.MIME_PNG, function(err, result){
-                            cloudinary.uploader.upload(result, function(res) {
-                                var embed = new Discord.RichEmbed()
-                                .setColor(0x00AE86)
-                                //.setDescription(description)
-                                .setFooter("Araceli Copyright 2017-2018")
-                                .setTimestamp()
-                                .setImage(res.secure_url)
-                                .setTitle("Your profile info:")
-                                .setAuthor("Araceli")
-                                message.channel.send({embed});
-                            },  {public_id: message.author.id});
+                        image.getBuffer(Jimp.MIME_PNG, function(err, result){
+                            message.channel.send("***Your profile:***", new Discord.Attachment(result, "profile.png"));
                         });
                     });
                 });
