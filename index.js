@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const config = require('./config.js');
 const removePunctuation = require('remove-punctuation');
 var mcData = require("minecraft-data")("1.8.8");
 var html2json = require('html2json').html2json;
