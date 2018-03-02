@@ -1,6 +1,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require(`${process.cwd()}/config.js`);
+var config;
+var token;
+var pref;
+if(process.env.travis === undefined){
+    config = require(`${process.cwd()}/config.js`);
+    token = config.token;
+    pref = config.prefix;
+} else {
+    token = process.env.token;
+    pref = process.env.prefix
+}
 const removePunctuation = require('remove-punctuation');
 var mcData = require("minecraft-data")("1.8.8");
 var html2json = require('html2json').html2json;
@@ -22,7 +32,7 @@ var DBManager;
 
 var filter = false;
 
-var prefix = config.prefix;
+var prefix = pref;
 var commandPath = "./commands/";
 var birthDay = "December 11, 2017";
 
@@ -33,7 +43,7 @@ var user;
 var password;
 var authMechanism;
 
-if(process.env.travis == undefined){
+if(process.env.travis === undefined){
     // Database
     db = config.db;
     dbPort = config.dbPort;
@@ -84,7 +94,7 @@ function init(){
             console.log("Loaded plugin " + commandPath + items[i]);
         }
         CommandManager = new commandmanager(commands, this, client, prefix, url, DBManager);
-        client.login(config.token);
+        client.login(token);
     });
 }
 
