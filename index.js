@@ -71,7 +71,7 @@ init();
 
 client.on('ready', () => {
     console.log('I am ready!');
-    if(process.env.travis === true){
+    if(process.env.travis !== undefined){
         process.exit();
     }
 });
