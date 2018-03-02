@@ -70,7 +70,10 @@ var onMessageRegisters = [];
 init();
 
 client.on('ready', () => {
-  console.log('I am ready!');
+    console.log('I am ready!');
+    if(process.env.travis === true){
+        process.exit();
+    }
 });
 
 String.prototype.replaceAll = function(search, replacement) {
