@@ -13,6 +13,9 @@ const config = {
   // Database HostPort
   'dbPort': '27017',
 
+  // Database AuthMechanism
+  'dbauthMechanism': 'DEFAULT',
+
   // Database Name
   'dbName': '',
 
@@ -23,4 +26,4 @@ const config = {
   'dbPass': '',
 };
 
-module.exports = config;
+module.exports = config;
