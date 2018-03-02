@@ -34,8 +34,8 @@ const user = encodeURIComponent(config.dbUser);
 const password = encodeURIComponent(config.dbPass);
 const authMechanism = config.dbauthMechanism;
 // Connection URL
-const url = f('mongodb://%s:%s@db:dbPort/?authMechanism=%s',
-  user, password, authMechanism);
+const url = f('mongodb://%s:%s@%s:%s/?authMechanism=%s',
+  user, password, db, dbPort, authMechanism);
 
 var commands = [];
 var onMessageRegisters = [];
@@ -52,7 +52,7 @@ String.prototype.replaceAll = function(search, replacement) {
 
 function init(){
     fs.readdir(commandPath, function(err, items) {
-        DBManager = new dbmngr(url, db, client, this);
+        DBManager = new dbmngr(url, dbName, client, this);
         for (let i = 0; i < items.length; i++) {
             var Plugin = require(commandPath + items[i]);
             var plugin = new Plugin(client, DBManager);

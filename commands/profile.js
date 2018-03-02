@@ -26,6 +26,9 @@ class profile extends Command
                     Jimp.read("./images/Profile/default.png", function (err, bg) {
                         console.log(bg)
                         bg.composite(image, 0, 0);
+                        bg.getBuffer(Jimp.MIME_PNG, function(err, result){
+                            console.log(result);
+                        });
                         Jimp.loadFont(Jimp.FONT_SANS_16_BLACK).then(function (font) {
                             image.print(font, 300/2, 256/4, user.username);
                             image.print(font, 300/2, 120, "XP: " + user.xp);
