@@ -22,18 +22,19 @@ var DBManager;
 
 var filter = false;
 
-var prefix = ">";
+var prefix = config.prefix;
 var commandPath = "./commands/";
 var birthDay = "December 11, 2017";
-var db = "admin";
 
-// Database Name
-const dbName = 'myproject';
-const user = encodeURIComponent('');
-const password = encodeURIComponent('');
-const authMechanism = 'DEFAULT';
+// Database
+const db = config.db;
+const dbPort = config.dbPort;
+const dbName = config.dbName;
+const user = encodeURIComponent(config.dbUser);
+const password = encodeURIComponent(config.dbPass);
+const authMechanism = config.dbauthMechanism;
 // Connection URL
-const url = f('mongodb://%s:%s@138.68.50.241:27017/?authMechanism=%s',
+const url = f('mongodb://%s:%s@db:dbPort/?authMechanism=%s',
   user, password, authMechanism);
 
 var commands = [];
