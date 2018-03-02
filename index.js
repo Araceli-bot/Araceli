@@ -26,13 +26,31 @@ var prefix = config.prefix;
 var commandPath = "./commands/";
 var birthDay = "December 11, 2017";
 
-// Database
-const db = config.db;
-const dbPort = config.dbPort;
-const dbName = config.dbName;
-const user = encodeURIComponent(config.dbUser);
-const password = encodeURIComponent(config.dbPass);
-const authMechanism = config.dbauthMechanism;
+var db;
+var dbPort;
+var dbName;
+var user;
+var password;
+var authMechanism;
+
+if(process.env.travis == undefined){
+    // Database
+    db = config.db;
+    dbPort = config.dbPort;
+    dbName = config.dbName;
+    user = encodeURIComponent(config.dbUser);
+    password = encodeURIComponent(config.dbPass);
+    authMechanism = config.dbauthMechanism;
+} else {
+    // Database
+    db = process.env.dbIp;
+    dbPort = process.env.dbPort;
+    dbName = process.env.dbName;
+    user = encodeURIComponent(process.env.dbUser);
+    password = encodeURIComponent(process.env.dbPass);
+    authMechanism = process.env.dbAuthMechanism;
+}
+
 // Connection URL
 const url = f('mongodb://%s:%s@%s:%s/?authMechanism=%s',
   user, password, db, dbPort, authMechanism);

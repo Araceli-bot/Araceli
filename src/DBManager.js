@@ -13,7 +13,6 @@ class DBManager
 
     findDocuments(search, collection, callback) {
         var d = this.db;
-        console.log(d)
         MongoClient.connect(this.url, function(err, db) {
             if (err) throw err;
             var dbo = db.db(d);
