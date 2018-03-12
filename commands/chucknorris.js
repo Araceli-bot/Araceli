@@ -4,7 +4,7 @@ const Command = require("../src/Command");
 class chucknorris extends Command{
 
     constructor(client) {
-        super("chuck", ":boom: | Chuck Norris", {}, "{prefix}chuck", "Use {prefix}chuck to get a random Chuck Norris ~~joke~~ fact! Example: {prefix}chuck");
+        super("chuck", ":boom: | Chuck Norris", {}, "{prefix}chuck", "Use {prefix}chuck to get a random Chuck Norris ~~joke~~ fact! Example: {prefix}chuck", 10);
         this.client = client
     }
 

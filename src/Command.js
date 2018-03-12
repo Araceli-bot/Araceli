@@ -3,12 +3,13 @@ const Message = require(__dirname + "/utils/Message");
 class Command extends Message
 {
 
-    constructor(commandName, displayName, args, usage, help){
+    constructor(commandName, displayName, args, usage, help, cdTime = 0){
         super(commandName, displayName);
         this.commandName = commandName;
         this.displayName = displayName;
         this.usage = usage;
         this.help = help;
+        this.cooldownTime = cdTime;
     }
 
     execute(){

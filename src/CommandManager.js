@@ -1,3 +1,7 @@
+const cq = require(__dirname + "/CooldownQueue");
+var CooldownQueue = new cq();
+const Discord = require('discord.js');
+
 class CommandManager
 {
     constructor(commands, bot, client, prefix, dbUrl, DBManager){
@@ -38,15 +42,36 @@ class CommandManager
             } else {
                 message.reply(this.helpMessage);
             }
-        } else*/ if(command === "commands") {
+        } else if(command === "commands") {
             message.reply(this.commandList);
-        } else {
-            for (let i = 0; i < this.commands.length; i++) {
-                if(this.commands[i].commandName === command){
+        } else {*/
+        for (let i = 0; i < this.commands.length; i++) {
+            if(this.commands[i].commandName === command){
+                if(CooldownQueue.inQueue(message.author, command) === false){
+                    CooldownQueue.addToQueue(message.author, command, this.commands[i].cooldownTime);
                     this.commands[i].execute(message, args, bot);
+                } else if(CooldownQueue.inQueue(message.author, command) === true) {
+                    if(message.author.id === 229035260069937153){
+                        var embed = new Discord.RichEmbed()
+                        .setColor(Math.floor(Math.random()*16777215).toString(16))
+                        .setFooter("Araceli 2017-2018")
+                        .setTimestamp()
+                        .setTitle(":snowman: | My Papa doesn't get cooldowns :smiley:")
+                        .setAuthor("Araceli");
+                        message.channel.send({embed});
+                    } else {
+                        var embed = new Discord.RichEmbed()
+                        .setColor(Math.floor(Math.random()*16777215).toString(16))
+                        .setFooter("Araceli 2017-2018")
+                        .setTimestamp()
+                        .setTitle(":snowman: | Chill out! You still have `" + CooldownQueue.getTimeLeft(message.author, command) + "` seconds left!")
+                        .setAuthor("Araceli");
+                        message.channel.send({embed});
+                    }
                 }
             }
         }
+        //}
     }
 }
 

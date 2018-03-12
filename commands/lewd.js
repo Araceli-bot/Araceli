@@ -6,7 +6,7 @@ class neko extends Command
 {
 
     constructor(client, db) {
-        super("lewd", ":scream_cat: | Lewd Neko", {}, "{prefix}lewd", "Use {prefix}lewd to get a random lewd neko image! Example: {prefix}lewd");
+        super("lewd", ":scream_cat: | Lewd Neko", {}, "{prefix}lewd", "Use {prefix}lewd to get a random lewd neko image! Example: {prefix}lewd", 10);
         this.client = client;
         this.db = db;
     }

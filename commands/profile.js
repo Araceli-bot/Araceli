@@ -6,7 +6,7 @@ class profile extends Command
 {
 
     constructor(client, db) {
-        super("profile", ":notebook_with_decorative_cover: | Profile", {}, "{prefix}profile", "Use {prefix}profile to get your Araceli profile info. Example: {prefix}profile");
+        super("profile", ":notebook_with_decorative_cover: | Profile", {}, "{prefix}profile", "Use {prefix}profile to get your Araceli profile info. Example: {prefix}profile", 10);
         this.client = client;
         this.db = db;
     }

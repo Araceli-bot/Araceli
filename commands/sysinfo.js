@@ -7,7 +7,7 @@ class sysinfo extends Command
 {
 
     constructor(client, db) {
-        super("sysinfo", ":gear: | SysInfo", {}, "{prefix}sysinfo", "Use {prefix}sysinfo to get info on the Araceli bot. Example: {prefix}sysinfo");
+        super("sysinfo", ":gear: | SysInfo", {}, "{prefix}sysinfo", "Use {prefix}sysinfo to get info on the Araceli bot. Example: {prefix}sysinfo", 5);
         this.client = client;
         this.db = db;
     }
