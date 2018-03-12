@@ -5,7 +5,7 @@ class ship extends Command
 {
 
     constructor(client) {
-        super("ship", {}, "{prefix}ship [<item> <item> <item>...]", "Use {prefix}ship to see if I ship things! Example: {prefix}ship \"Me\" \"You\"");
+        super("ship", ":package: | Ship", {}, "{prefix}ship [<item> <item> <item>...]", "Use {prefix}ship to see if I ship things! Example: {prefix}ship \"Me\" \"You\"");
         this.client = client
     }
 
@@ -39,13 +39,7 @@ class ship extends Command
             for(var i = 0; i < ratings.length; i++){
                 description += ratings[i] + "\n";
             }
-            var embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
-            .setDescription(description)
-            .setFooter("Araceli Copyright 2017-2018")
-            .setTimestamp()
-            .setTitle(":thinking: Ships:")
-            .setAuthor("Araceli")
+            var embed = this.embed(description);
             message.channel.send({embed});
         } else {
             message.reply('I need something to rate!');

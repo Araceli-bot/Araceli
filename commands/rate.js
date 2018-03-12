@@ -5,7 +5,7 @@ class rate extends Command
 {
 
     constructor(client) {
-        super("rate", {}, "{prefix}rate [<item> <item> <item>...]", "Use {prefix}rate to rate things! Example: {prefix}rate \"My Life\"");
+        super("rate", ":bar_chart: | Rate", {}, "{prefix}rate [<item> <item> <item>...]", "Use {prefix}rate to rate things! Example: {prefix}rate \"My Life\"");
         this.client = client
     }
 
@@ -34,13 +34,7 @@ class rate extends Command
             for(var i = 0; i < ratings.length; i++){
                 description += ratings[i] + "\n";
             }
-            var embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
-            .setDescription(description)
-            .setFooter("Araceli Copyright 2017-2018")
-            .setTimestamp()
-            .setTitle(":thinking: Ratings:")
-            .setAuthor("Araceli")
+            var embed = this.embed(description);
             message.channel.send({embed});
         } else {
             message.reply('I need something to rate!');

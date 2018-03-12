@@ -5,7 +5,7 @@ class math extends Command
 {
 
     constructor(client) {
-        super("math", {}, "{prefix}math [<math expression> <math expression>...]\n{prefix}math average (<number> <number> <number>)\n{prefix}math random <min> <max>", "Use {prefix}math when you're to lazy to *actually* do math! Example: {prefix}math \"2 + 2\"");
+        super("math", ":heavy_division_sign: | Math", {}, "{prefix}math [<math expression> <math expression>...]\n{prefix}math average (<number> <number> <number>)\n{prefix}math random <min> <max>", "Use {prefix}math when you're to lazy to *actually* do math! Example: {prefix}math \"2 + 2\"");
         this.client = client
     }
 
@@ -53,29 +53,11 @@ class math extends Command
                     var place = i + 1;
                     description += "Result for " + place + ": " + results[i] + "\n";
                 }
-                var embed = new Discord.RichEmbed()
-                .setColor(0x00AE86)
-                .setDescription(description)
-                .setFooter("Araceli Copyright 2017-2018")
-                /*
-                * Takes a Date object, defaults to current date.
-                */
-                .setTimestamp()
-                .setTitle("Math results:")
-                .setAuthor("Araceli")
+                var embed = this.embed(description);
                 message.channel.send({embed});
             } else {
-                var embed = new Discord.RichEmbed()
-                .setColor(0x00AE86)
-                .setDescription("You must specify a math problem! Example: `>math \"1+1\"`")
-                .setFooter("Araceli Copyright 2017-2018")
-                /*
-                * Takes a Date object, defaults to current date.
-                */
-                .setTimestamp()
-                .setTitle("Math error:")
-                .setAuthor("Araceli")
-                message.channel.send({embed});
+                var embed = this.embed("You must specify a math problem! Example: `>math \"1+1\"`");
+                message.channel.send(embed);
             }
         }
     }

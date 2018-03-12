@@ -77,6 +77,22 @@ class DBManager
         });
     }
 
+    updateUserBG(userID, bgName, callback) {
+        var d = this.db;
+        MongoClient.connect(this.url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db(d);
+            var user = {user: userID};
+            var usr = { profileBackground: bgName };
+            var data = {$set:usr};
+            dbo.collection("users").updateOne(user, data, function(err, res) {
+                if (err) throw err;
+                callback(res);
+                db.close();
+            });
+        });
+    }
+
 }
 
 module.exports = DBManager;

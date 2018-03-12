@@ -29,12 +29,16 @@ const commandmanager = require("./src/CommandManager");
 var CommandManager;
 const dbmngr = require("./src/DBManager");
 var DBManager;
+const activityManager = require("./src/ActivityManager");
+const ActivityManager = new activityManager();
 
 var filter = false;
 
 var prefix = pref;
 var commandPath = "./commands/";
 var birthDay = "December 11, 2017";
+
+var queue = [];
 
 var db;
 var dbPort;
@@ -71,6 +75,7 @@ init();
 
 client.on('ready', () => {
     console.log('I am ready!');
+    startActivityProcess();
     if(process.env.travis !== undefined){
         process.exit();
     }
@@ -97,6 +102,7 @@ function init(){
             console.log("Loaded plugin " + commandPath + items[i]);
         }
         CommandManager = new commandmanager(commands, this, client, prefix, url, DBManager);
+        this.CommandManager = CommandManager;
         client.login(token);
     });
 }
@@ -116,6 +122,15 @@ this.getRandomInt = function(min, max) {
 })*/
 
 client.on('message', message => {
+    /*if(filter === true) {
+        message.content = removePunctuation(message.content.toLowerCase());
+        if(swearjar.profane(message.content) || message.content.match(badwords)) {
+            message.author.createDM().then((channel) => {
+                channel.send("Hey! Profanity isn't allowed here! ```\"" + message.content + "\"``` contains profanity. Please stop")
+                message.delete();
+            });
+        }
+    }*/
     for (let i = 0; i < onMessageRegisters.length; i++) {
         commands[onMessageRegisters[i]].onMessage(message, this);
     }
@@ -169,15 +184,25 @@ function handleCommands(message){
         }
         var args = splitMSG;
 
-        if(filter === true) {
-            message.content = removePunctuation(message.content.toLowerCase());
-            if(swearjar.profane(message.content) || message.content.match(badwords)) {
-                message.author.createDM().then((channel) => {
-                    channel.send("Hey! Profanity isn't allowed here! ```\"" + message.content + "\"``` contains profanity. Please stop")
-                    message.delete();
-                });
-            }
-        }
-        CommandManager.execute(command, message, args, this);
+        CommandManager.execute(command, message, args, getBot());
     }
+}
+
+function getBot(){
+    return this;
+}
+
+function startActivityProcess(){
+    setInterval(function(){
+        var activity = ActivityManager.getActivity();
+        var guilds = client.guilds.array();
+        var i = 0;
+        var members = 0;
+        for(i in guilds){
+            members += guilds[i].memberCount;
+        }
+        var msg = activity.msg.replaceAll("%g", guilds.length)
+        msg = msg.replaceAll("%m", members)
+        client.user.setActivity(msg, {type: activity.type});
+    }, 5000);
 }

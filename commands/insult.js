@@ -5,7 +5,7 @@ class insult extends Command
 {
 
     constructor(client) {
-        super("insult", {}, "{prefix}insult <item>", "Use {prefix}insult to insult things! Example: {prefix}insult \"My Life\"");
+        super("insult", ":fire: | Insult", {}, "{prefix}insult <item>", "Use {prefix}insult to insult things! Example: {prefix}insult \"My Life\"");
         this.client = client
     }
 
@@ -22,16 +22,7 @@ class insult extends Command
         arr.shift();
         if(arr.length > 0){
             const InsultCompliment = require("insult-compliment");
-            var embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
-            .setDescription(arr[0] + ", " +InsultCompliment.Insult())
-            .setFooter("Araceli Copyright 2017-2018")
-            /*
-            * Takes a Date object, defaults to current date.
-            */
-            .setTimestamp()
-            .setTitle("Insult:")
-            .setAuthor("Insult generator")
+            var embed = this.embed(arr[0] + ", "  + InsultCompliment.Insult());
             message.channel.send({embed});
         } else {
             message.reply("Give me someone or something to insult!");

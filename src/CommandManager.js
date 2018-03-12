@@ -20,7 +20,7 @@ class CommandManager
     }
 
     execute(command, message, args, bot){
-        if(command === "help"){
+        /*if(command === "help"){
             if(args.length > 0){
                 var reply = false;
                 var command;
@@ -38,7 +38,7 @@ class CommandManager
             } else {
                 message.reply(this.helpMessage);
             }
-        } else if(command === "commands") {
+        } else*/ if(command === "commands") {
             message.reply(this.commandList);
         } else {
             for (let i = 0; i < this.commands.length; i++) {

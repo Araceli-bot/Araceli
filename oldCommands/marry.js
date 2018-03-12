@@ -6,7 +6,7 @@ class marry extends Command
 {
 
     constructor(client, db) {
-        super("marry", {}, "{prefix}marry <user>", "Use {prefix}marry to get hitched to someone! Example: {prefix}marry @Araceli#8187");
+        super("marry", ":wedding: | Marriage", {}, "{prefix}marry <user>", "Use {prefix}marry to get hitched to someone! Example: {prefix}marry @Araceli#8187");
         this.client = client;
         this.db = db;
         this.waitingOnResponse = [];
@@ -19,18 +19,13 @@ class marry extends Command
     execute(message, args, bot) {
         var spouse = args[0];
         var proposer = message.author;
-        var embed = new Discord.RichEmbed()
-        .setColor(0x00AE86)
-        .setDescription(spouse + ", <@" + message.author.id + "> would like to marry you. Send `yes` to accept or `no` to deny.")
-        .setFooter("Araceli Copyright 2017-2018")
-        .setTimestamp()
-        .setTitle("Marriage proposal")
-        .setAuthor("Araceli")
+        var embed = this.embed(spouse + ", <@" + message.author.id + "> would like to marry you. Send `yes` to accept or `no` to deny.");
         message.channel.send({embed});
         this.waitingOnResponse.push([proposer, spouse]);
     }
 
     onMessage(message, bot) {
+        var cmd = this;
         for (let i = 0; i < this.waitingOnResponse.length; i++) {
             if("<@"+message.author.id+">" === this.waitingOnResponse[i][1]){
                 if(message.content.toLowerCase() === "yes"){
@@ -55,23 +50,11 @@ class marry extends Command
                     };
                     var proposer = this.waitingOnResponse[i][0].id;
                     this.db.createMarriage(user1, user2, function(){
-                        var embed = new Discord.RichEmbed()
-                        .setColor(0x00AE86)
-                        .setDescription(":fireworks::tada: <@" + message.author.id + "> has accepted the marriage proposal of <@" + proposer + ">! :tada::fireworks:")
-                        .setFooter("Araceli Copyright 2017-2018")
-                        .setTimestamp()
-                        .setTitle("Marriage proposal")
-                        .setAuthor("Araceli")
+                        var embed = cmd.embed(":fireworks::tada: <@" + message.author.id + "> has accepted the marriage proposal of <@" + proposer + ">! :tada::fireworks:");
                         message.channel.send({embed});
                     });
                 } else if(message.content.toLowerCase() === "no") {
-                    var embed = new Discord.RichEmbed()
-                    .setColor(0x00AE86)
-                    .setDescription(":broken_heart: Sorry, <@" + this.waitingOnResponse[i][0].id + ">, but <@" + message.author.id + "> doesn't want to marry you. :broken_heart:")
-                    .setFooter("Araceli Copyright 2017-2018")
-                    .setTimestamp()
-                    .setTitle("Marriage refusal")
-                    .setAuthor("Araceli")
+                    var embed = cmd.embed(":broken_heart: Sorry, <@" + this.waitingOnResponse[i][0].id + ">, but <@" + message.author.id + "> doesn't want to marry you. :broken_heart:");
                     message.channel.send({embed});
                 }
             }

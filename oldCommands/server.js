@@ -4,7 +4,7 @@ const Command = require("../src/Command");
 class server extends Command{
 
     constructor(client) {
-        super("server", {}, "{prefix}server {server address}", "Use {prefix}server to get info on a minecraft server. Example: {prefix}server sg.lbsg.net:19132");
+        super("server", ":desktop: | Minecraft server info", {}, "{prefix}server {server address}", "Use {prefix}server to get info on a minecraft server. Example: {prefix}server sg.lbsg.net:19132");
         this.client = client
     }
 

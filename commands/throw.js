@@ -1,10 +1,11 @@
 const Discord = require('discord.js');
 const Command = require("../src/Command");
 
-class Throw extends Command{
+class Throw extends Command
+{
 
     constructor(client) {
-        super("throw", {}, "{prefix}throw <target thing> <target location>", "Use {prefix}throw to throw things! Example: {prefix}throw \"My Life\" \"Out the window\"");
+        super("throw", ":comet: | Throw", {}, "{prefix}throw <target thing> <target location>", "Use {prefix}throw to throw things! Example: {prefix}throw \"My Life\" \"Out the window\"");
         this.client = client
     }
 
@@ -28,19 +29,10 @@ class Throw extends Command{
         }
         arr.shift();
         if(arr.length > 0){
-            var embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
-            .setDescription("<@" + message.author.id + "> " + choice + " " + arr[0] + " to " + arr[1])
-            .setFooter("Araceli Copyright 2017-2018")
-            /*
-            * Takes a Date object, defaults to current date.
-            */
-            .setTimestamp()
-            .setTitle("Throw:")
-            .setAuthor("Araceli")
+            var embed = this.embed("<@" + message.author.id + "> " + choice + " " + arr[0] + " to " + arr[1]);
             message.channel.send({embed});
         } else {
-            message.reply("Give me someone or something to insult!");
+            message.reply("Give me someone or something to throw!");
         }
     }
 }
