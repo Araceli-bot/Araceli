@@ -28,7 +28,7 @@ class sysinfo extends Command
                 var cpuString = "CPU:\n     " + dat.manufacturer + " " + dat.brand + " " + dat.cores + "x Cores at " + dat.speed + "GHz \n";
                 description += cpuString;
                 si.currentLoad(function(da){
-                    var cpuUsageString = "     Average Load: " + da.avgload * 100 + "% | Current Load: " + Math.round(da.currentload) + "% | System Load: " + Math.round(da.currentload_system) + "% | User Load: " + Math.round(da.currentload_user) + "%\n\n";
+                    var cpuUsageString = "     Current Load: " + Math.round(da.currentload) + "% | System Load: " + Math.round(da.currentload_system) + "% | User Load: " + Math.round(da.currentload_user) + "%\n\n";
                     description += cpuUsageString;
                     var guilds = cmd.client.guilds.array();
                     var i = 0;
@@ -36,8 +36,10 @@ class sysinfo extends Command
                     for(i in guilds){
                         members += guilds[i].memberCount;
                     }
-                    var discordString = "DISCORD:\n     Guilds: " + guilds.length + "\n     Users: " + members;
+                    var discordString = "Discord:\n     Guilds: " + guilds.length + "\n     Users: " + members + "\n\n";
                     description += discordString;
+                    var commandString = "Commands:\n    Number: " + bot.CommandManager.commands.length;
+                    description += commandString;
                     var embed = cmd.embed(description);
                     message.channel.send({embed});
                 });

@@ -2,11 +2,11 @@ const Discord = require('discord.js');
 const Command = require("../src/Command");
 const NekoJS = require("neko.js");
 
-class neko extends Command
+class pat extends Command
 {
 
     constructor(client, db) {
-        super("lewd", ":scream_cat: | Lewd Neko", {}, "{prefix}lewd", "Use {prefix}lewd to get a random lewd neko image! Example: {prefix}lewd", 10);
+        super("hug", ":hugging: | Hug", {}, "{prefix}hug", "Use {prefix}hug to get a random hug gif! Example: {prefix}hug", 10);
         this.client = client;
         this.db = db;
     }
@@ -18,12 +18,12 @@ class neko extends Command
     execute(message, args, bot) {
         var cmd = this;
         let nekoclient = new NekoJS.Client();
-        nekoclient.LewdNeko().then(function(lewdNekoImg){
-            var embed = cmd.embed("", lewdNekoImg.neko, null, null, null, true, message.channel);
+        nekoclient.hug().then(function(hug){
+            var embed = cmd.embed("", hug.url);
             message.channel.send({embed});
         });
     }
 
 }
 
-module.exports = neko;
+module.exports = pat;

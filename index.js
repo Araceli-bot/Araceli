@@ -55,6 +55,8 @@ if(process.env.travis === undefined){
     user = encodeURIComponent(config.dbUser);
     password = encodeURIComponent(config.dbPass);
     authMechanism = config.dbauthMechanism;
+    anisecret = config.aniSecret;
+    aniid = config.aniId;
 } else {
     // Database
     db = process.env.dbIp;
@@ -63,6 +65,8 @@ if(process.env.travis === undefined){
     user = encodeURIComponent(process.env.dbUser);
     password = encodeURIComponent(process.env.dbPass);
     authMechanism = process.env.dbAuthMechanism;
+    anisecret = null;
+    aniid = null;
 }
 
 // Connection URL
@@ -121,50 +125,64 @@ this.getRandomInt = function(min, max) {
     console.log("\nBye bye!");
 })*/
 
+this.lolReplace = [
+    "I have nothing worthwhile to contribute to this conversation so I'll just say lol.",
+    "I'm too lazy to read what you just wrote so I'm typing something useless (lol) in hopes that you'll think I'm still paying attention.",
+    "Your statement lacks even the vaguest trace of humor but I'll pretend I'm amused. lol",
+    "This is a pointless acronym I'm sticking in my sentence just because it's become so engraved into my mind that when chatting, I MUST use the meaningless sentence-filler 'lol.'"
+];
+
 client.on('message', message => {
-    /*if(filter === true) {
-        message.content = removePunctuation(message.content.toLowerCase());
-        if(swearjar.profane(message.content) || message.content.match(badwords)) {
-            message.author.createDM().then((channel) => {
-                channel.send("Hey! Profanity isn't allowed here! ```\"" + message.content + "\"``` contains profanity. Please stop")
-                message.delete();
-            });
-        }
-    }*/
-    for (let i = 0; i < onMessageRegisters.length; i++) {
-        commands[onMessageRegisters[i]].onMessage(message, this);
-    }
-    if(message.author.bot === false){
-        var search = {user: message.author.id};
-        DBManager.findDocuments(search, "users", function(docs){
-            if(docs.length === 0){
-                var insertionData = {
-                    user: message.author.id,
-                    userAvatar: message.author.avatarURL,
-                    bot: message.author.bot,
-                    displayAvatarURL: message.author.displayAvatarURL,
-                    fullUsername: message.author.username + "#" + message.author.discriminator,
-                    username: message.author.username,
-                    xp: 0,
-                    profileBackground: null,
-                    money: 2000,
-                    reputation: 0
-                };
-                DBManager.insertDocument(insertionData, function(res){
-                    handleCommands(message);
-                });
-            } else {
-                DBManager.getUser(message.author.id, function(response){
-                    var user = response[0];
-                    var xp = user.xp += Math.ceil(message.content.length / 5);
-                    var money = user.money += Math.ceil(message.content.length / 5);
-                    //userID, Xp, Money, rep, callback
-                    DBManager.updateUserCurrencyData(message.author.id, xp, money, 0, function(resp){
-                        handleCommands(message);
-                    });
+    if(message.content.toLowerCase() == "lol" || message.content.toLowerCase() == "lel"){
+        message.channel.send("What they meant by that is: " + this.lolReplace[Math.floor(Math.random() * (this.lolReplace.length - 1))]);
+    } else {
+        /*if(filter === true) {
+            message.content = removePunctuation(message.content.toLowerCase());
+            if(swearjar.profane(message.content) || message.content.match(badwords)) {
+                message.author.createDM().then((channel) => {
+                    channel.send("Hey! Profanity isn't allowed here! ```\"" + message.content + "\"``` contains profanity. Please stop")
+                    message.delete();
                 });
             }
-        });
+        }*/
+        for (let i = 0; i < onMessageRegisters.length; i++) {
+            commands[onMessageRegisters[i]].onMessage(message, this);
+        }
+        if(message.author.bot === false){
+            var search = {user: message.author.id};
+            DBManager.findDocuments(search, "users", function(docs){
+                if(docs.length === 0){
+                    var insertionData = {
+                        user: message.author.id,
+                        userAvatar: message.author.avatarURL,
+                        bot: message.author.bot,
+                        displayAvatarURL: message.author.displayAvatarURL,
+                        fullUsername: message.author.username + "#" + message.author.discriminator,
+                        username: message.author.username,
+                        xp: 0,
+                        profileBackground: null,
+                        money: 2000,
+                        reputation: 0
+                    };
+                    DBManager.insertDocument(insertionData, function(res){
+                        handleCommands(message);
+                    });
+                } else {
+                    new Promise(function(resolve, reject){
+                        DBManager.getUser(message.author.id, function(response){
+                            var user = response[0];
+                            var xp = user.xp += Math.ceil(message.content.length / 5);
+                            var money = user.money += Math.ceil(message.content.length / 5);
+                            //userID, Xp, Money, rep, callback
+                            DBManager.updateUserCurrencyData(message.author.id, xp, money, 0, function(resp){
+
+                            });
+                        });
+                    });
+                    handleCommands(message);
+                }
+            });
+        }
     }
 });
 

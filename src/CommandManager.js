@@ -45,13 +45,14 @@ class CommandManager
         } else if(command === "commands") {
             message.reply(this.commandList);
         } else {*/
+        command = command.toLowerCase();
         for (let i = 0; i < this.commands.length; i++) {
             if(this.commands[i].commandName === command){
                 if(CooldownQueue.inQueue(message.author, command) === false){
                     CooldownQueue.addToQueue(message.author, command, this.commands[i].cooldownTime);
                     this.commands[i].execute(message, args, bot);
                 } else if(CooldownQueue.inQueue(message.author, command) === true) {
-                    if(message.author.id === 229035260069937153){
+                    if(message.author.id == 229035260069937153){
                         var embed = new Discord.RichEmbed()
                         .setColor(Math.floor(Math.random()*16777215).toString(16))
                         .setFooter("Araceli 2017-2018")
@@ -59,6 +60,7 @@ class CommandManager
                         .setTitle(":snowman: | My Papa doesn't get cooldowns :smiley:")
                         .setAuthor("Araceli");
                         message.channel.send({embed});
+                        this.commands[i].execute(message, args, bot);
                     } else {
                         var embed = new Discord.RichEmbed()
                         .setColor(Math.floor(Math.random()*16777215).toString(16))
