@@ -1,30 +1,31 @@
 const config = {
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
-  'token': '',
+  'token': 'tokenInput',
 
   // Bots Prefix
-  'prefix': '',
+  'prefix': 'prefixInput',
 
   // Database Information
 
   // Database HostIP
-  'db': '',
+  'db': 'dbInput',
 
   // Database HostPort
-  'dbPort': '',
+  'dbPort': 'dbPortInput',
 
   // Database AuthMechanism
-  'dbauthMechanism': '',
+  'dbauthMechanism': 'dbauthMechanismInput',
 
   // Database Name
-  'dbName': '',
+  'dbName': 'dbNameInput',
 
   // Database User
-  'dbUser': '',
+  'dbUser': 'dbUserInput',
 
   // Database Password
-  'dbPass': '',
+  'dbPass': 'dbPassInput',
 
+  // Anime Command Based Data
   'aniId': '',
 
   'aniSecret': ''
