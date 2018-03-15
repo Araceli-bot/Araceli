@@ -1,5 +1,18 @@
+if (process.version.slice(1).split(".")[0] < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
+var fs = require("fs");
+// Checks if config is enabled and if not exits with a error.
+if (fs.existsSync('./config.js') === true) {
+	console.log('Configuration file loaded and exists!');
+} else {
+	if (fs.existsSync('./config.js') === false) {
+		console.error('Configuration file does not exist!\nPlease run (node ./src/utils/configSetup.js) to setup the configuration.');
+		process.exit(1);
+	}
+}
+
 var config;
 var token;
 var pref;
@@ -15,7 +28,6 @@ const removePunctuation = require('remove-punctuation');
 var mcData = require("minecraft-data")("1.8.8");
 var html2json = require('html2json').html2json;
 var request = require('request');
-var fs = require('fs');
 const MongoClient = require('mongodb').MongoClient;
 const f = require('util').format;
 const assert = require('assert');
