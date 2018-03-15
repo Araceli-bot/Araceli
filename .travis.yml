@@ -4,9 +4,6 @@ node_js:
   - "9.6.1"
 install:
   - npm install
-script:
-  - npm test
-after_script:
   - echo "token"
   - echo "prefix"
   - echo "db"
@@ -15,3 +12,5 @@ after_script:
   - echo "dbName"
   - echo "dbUser"
   - echo "dbPass"
+script:
+  - npm test
