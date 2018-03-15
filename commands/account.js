@@ -5,7 +5,7 @@ class account extends Command
 {
 
     constructor(client, db) {
-        super("account", ":gear: | Account", {}, "{prefix}account <subcommand>", "Use {prefix}account to change your account details! Example: {prefix}account setbg boardwalk", 10);
+        super("account", ":gear: | Account", ["Account"], "{prefix}account <subcommand>", "Use {prefix}account to change your account details! Example: {prefix}account setbg boardwalk", 10);
         this.client = client;
         this.db = db;
         this.bgs = [

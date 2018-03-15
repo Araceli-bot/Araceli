@@ -12,12 +12,20 @@ class CommandManager
         this.url = dbUrl;
         this.DBManager = DBManager;
         this.helpMessage = "```css\nHelp Legend:\n{}: indicates optional argument\n[]: indicates unlimited args that must be surrounded by \"\"\n(): indicates an unlimited number of arguments that don't need \"\"\n<>: indicates an argument\n\n====Help====\n{help}```";
-        this.help = "";
+        this.help = {};
         this.commandList = "\n";
         for (let i = 0; i < this.commands.length; i++) {
             this.commands[i].help = this.commands[i].help.replaceAll("{prefix}", this.prefix);
             this.commands[i].usage = this.commands[i].usage.replaceAll("{prefix}", this.prefix);
-            this.help += this.commands[i].commandName + ": " + this.commands[i].help + "\n";
+            for (let t = 0; t < this.commands[i].tags.length; t++) {
+                var tag = this.commands[i].tags[t];
+                if(this.help[tag] !== undefined){
+                    this.help[tag].push({command: this.commands[i].commandName});
+                } else {
+                    this.help[tag] = [];
+                    this.help[tag].push({command: this.commands[i].commandName});
+                }
+            }
             this.commandList += "`" + this.commands[i].commandName + "`" + "\n";
         }
         this.helpMessage = this.helpMessage.replaceAll("{help}", this.help);

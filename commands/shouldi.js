@@ -5,7 +5,7 @@ class Throw extends Command
 {
 
     constructor(client) {
-        super("shouldi", ":thinking: | Should I?", {}, "{prefix}shouldi <do this?>", "Use {prefix}shouldi to ask Araceli what you should do (don't take her seriously)! Example: {prefix}shouldi \"Eat Some Ice Cream?\"");
+        super("shouldi", ":thinking: | Should I?", ["Fun"], "{prefix}shouldi <do this?>", "Use {prefix}shouldi to ask Araceli what you should do (don't take her seriously)! Example: {prefix}shouldi \"Eat Some Ice Cream?\"");
         this.client = client
     }
 

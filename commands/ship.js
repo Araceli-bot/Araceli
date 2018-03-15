@@ -5,7 +5,7 @@ class ship extends Command
 {
 
     constructor(client) {
-        super("ship", ":package: | Ship", {}, "{prefix}ship [<item> <item> <item>...]", "Use {prefix}ship to see if I ship things! Example: {prefix}ship \"Me\" \"You\"");
+        super("ship", ":package: | Ship", ["Fun"], "{prefix}ship [<item> <item> <item>...]", "Use {prefix}ship to see if I ship things! Example: {prefix}ship \"Me\" \"You\"");
         this.client = client
     }
 

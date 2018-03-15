@@ -5,7 +5,7 @@ class spoon extends Command
 {
 
     constructor(client, db) {
-        super("spoon", ":spoon: | Spoon", {}, "{prefix}spoon", "Use {prefix}spoon to get a random PMMP spoon name! Example: {prefix}spoon");
+        super("spoon", ":spoon: | Spoon", ["Fun"], "{prefix}spoon", "Use {prefix}spoon to get a random PMMP spoon name! Example: {prefix}spoon");
         this.client = client;
         this.db = db;
     }

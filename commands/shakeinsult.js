@@ -5,17 +5,21 @@ class shakesult extends Command
 {
 
     constructor(client) {
-        super("yomama", ":fire: :woman: | YO MAMA Joke", {}, "{prefix}yomama", "Use {prefix}yomama to insult things YO MAMA style! Example: {prefix}yomama <person>");
+        super("shakeinsult", ":fire: | Shakespeare Insult", ["Fun"], "{prefix}shakeinsult", "Use {prefix}shakeinsult to insult things Shakespeare style! Example: {prefix}shakeinsult <person>");
         this.client = client
     }
 
     execute(message, args, bot) {
-        const yoMamma = require('yo-mamma').default;
+        const shake = require('shakespeare-insult');
         if(args.length > 0){
-            var embed = this.embed(args[0] + ", " + yoMamma());
+            var text = "";
+            args.forEach(elem => {
+                text += elem + " ";
+            });
+            var embed = this.embed(text + " you " + shake.random());
             message.channel.send({embed});
         } else {
-            var embed = this.embed(yoMamma());
+            var embed = this.embed(shake.random());
             message.channel.send({embed});
         }
     }

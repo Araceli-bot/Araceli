@@ -6,7 +6,7 @@ class pat extends Command
 {
 
     constructor(client, db) {
-        super("pat", ":wave: | Pat", {}, "{prefix}pat", "Use {prefix}pat to get a random pat gif! Example: {prefix}pat", 10);
+        super("pat", ":wave: | Pat", ["Anime", "Fun"], "{prefix}pat", "Use {prefix}pat to get a random pat gif! Example: {prefix}pat", 10);
         this.client = client;
         this.db = db;
     }

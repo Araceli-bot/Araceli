@@ -6,7 +6,7 @@ class neko extends Command
 {
 
     constructor(client, db) {
-        super("lizard", ":lizard: | Lizard", {}, "{prefix}lizard", "Use {prefix}lizard to get a random lizard image! Example: {prefix}lizard", 10);
+        super("lizard", ":lizard: | Lizard", ["Image", "Fun"], "{prefix}lizard", "Use {prefix}lizard to get a random lizard image! Example: {prefix}lizard", 10);
         this.client = client;
         this.db = db;
     }

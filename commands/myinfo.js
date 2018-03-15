@@ -5,7 +5,7 @@ const Command = require("../src/Command");
 class myinfo extends Command{
 
     constructor(client) {
-        super("myinfo", ":mag: | Your info", {}, "{prefix}myinfo", "Use {prefix}myinfo to get your Discord info! Example: {prefix}myinfo");
+        super("myinfo", ":mag: | Your info", ["Account"], "{prefix}myinfo", "Use {prefix}myinfo to get your Discord info! Example: {prefix}myinfo");
         this.client = client
     }
 

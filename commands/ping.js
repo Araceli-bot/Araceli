@@ -4,7 +4,7 @@ const Command = require("../src/Command");
 class ping extends Command{
 
     constructor(client) {
-        super("ping", ":gear: | Ping", {}, "{prefix}ping", "Use {prefix}ping to get your ping to Araceli! Example: {prefix}ping");
+        super("ping", ":gear: | Ping", ["System", "Information"], "{prefix}ping", "Use {prefix}ping to get your ping to Araceli! Example: {prefix}ping");
         this.client = client
     }
 

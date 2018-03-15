@@ -5,7 +5,7 @@ class Throw extends Command
 {
 
     constructor(client) {
-        super("throw", ":comet: | Throw", {}, "{prefix}throw <target thing> <target location>", "Use {prefix}throw to throw things! Example: {prefix}throw \"My Life\" \"Out the window\"");
+        super("throw", ":comet: | Throw", ["Fun"], "{prefix}throw <target thing> <target location>", "Use {prefix}throw to throw things! Example: {prefix}throw \"My Life\" \"Out the window\"");
         this.client = client
     }
 

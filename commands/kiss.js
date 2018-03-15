@@ -6,7 +6,7 @@ class kiss extends Command
 {
 
     constructor(client, db) {
-        super("kiss", ":kissing_heart: | Kiss", {}, "{prefix}kiss", "Use {prefix}kiss to get a random kiss gif! Example: {prefix}kiss", 10);
+        super("kiss", ":kissing_heart: | Kiss", ["Anime", "Fun"], "{prefix}kiss", "Use {prefix}kiss to get a random kiss gif! Example: {prefix}kiss", 10);
         this.client = client;
         this.db = db;
     }

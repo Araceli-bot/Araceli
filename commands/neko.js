@@ -6,7 +6,7 @@ class neko extends Command
 {
 
     constructor(client, db) {
-        super("neko", ":smile_cat: | Neko", {}, "{prefix}neko", "Use {prefix}neko to get a random neko image! Example: {prefix}neko", 10);
+        super("neko", ":smile_cat: | Neko", ["Anime", "Image", "Fun"], "{prefix}neko", "Use {prefix}neko to get a random neko image! Example: {prefix}neko", 10);
         this.client = client;
         this.db = db;
     }

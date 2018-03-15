@@ -5,7 +5,7 @@ class rate extends Command
 {
 
     constructor(client) {
-        super("rate", ":bar_chart: | Rate", {}, "{prefix}rate [<item> <item> <item>...]", "Use {prefix}rate to rate things! Example: {prefix}rate \"My Life\"");
+        super("rate", ":bar_chart: | Rate", ["Fun"], "{prefix}rate [<item> <item> <item>...]", "Use {prefix}rate to rate things! Example: {prefix}rate \"My Life\"");
         this.client = client
     }
 

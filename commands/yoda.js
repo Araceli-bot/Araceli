@@ -5,7 +5,7 @@ class yoda extends Command
 {
 
     constructor(client) {
-        super("yoda", ":frog: | Yoda Quote", {}, "{prefix}yoda", "Use {prefix}yoda for a wise quote! Example: {prefix}yoda");
+        super("yoda", ":frog: | Yoda Quote", ["Fun"], "{prefix}yoda", "Use {prefix}yoda for a wise quote! Example: {prefix}yoda");
         this.client = client
     }
 

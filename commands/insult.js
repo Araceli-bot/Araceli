@@ -5,7 +5,7 @@ class insult extends Command
 {
 
     constructor(client) {
-        super("insult", ":fire: | Insult", {}, "{prefix}insult <item>", "Use {prefix}insult to insult things! Example: {prefix}insult \"My Life\"");
+        super("insult", ":fire: | Insult", ["Fun"], "{prefix}insult <item>", "Use {prefix}insult to insult things! Example: {prefix}insult \"My Life\"");
         this.client = client
     }
 

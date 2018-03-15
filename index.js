@@ -31,6 +31,8 @@ const dbmngr = require("./src/DBManager");
 var DBManager;
 const activityManager = require("./src/ActivityManager");
 const ActivityManager = new activityManager();
+const cacheManager = require("./src/utils/CacheManager");
+const CacheManager = new cacheManager();
 
 var filter = false;
 
@@ -93,6 +95,7 @@ String.prototype.replaceAll = function(search, replacement) {
 function init(){
     fs.readdir(commandPath, function(err, items) {
         DBManager = new dbmngr(url, dbName, client, this);
+        CacheManager.setDb(DBManager);
         for (let i = 0; i < items.length; i++) {
             var Plugin = require(commandPath + items[i]);
             var plugin = new Plugin(client, DBManager);
@@ -107,6 +110,7 @@ function init(){
         }
         CommandManager = new commandmanager(commands, this, client, prefix, url, DBManager);
         this.CommandManager = CommandManager;
+        //console.log(CacheManager.get("users.1.username"));
         client.login(token);
     });
 }

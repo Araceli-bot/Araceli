@@ -4,7 +4,7 @@ const Command = require("../src/Command");
 class Info extends Command{
 
     constructor(client) {
-        super("info", ":gear: | My info", {}, "{prefix}info", "Use {prefix}info to get Araceli's info! Example: {prefix}info");
+        super("info", ":gear: | My info", ["Information", "System"], "{prefix}info", "Use {prefix}info to get Araceli's info! Example: {prefix}info");
         this.client = client
     }
 

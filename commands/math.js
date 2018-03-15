@@ -5,7 +5,7 @@ class math extends Command
 {
 
     constructor(client) {
-        super("math", ":heavy_division_sign: | Math", {}, "{prefix}math [<math expression> <math expression>...]\n{prefix}math average (<number> <number> <number>)\n{prefix}math random <min> <max>", "Use {prefix}math when you're to lazy to *actually* do math! Example: {prefix}math \"2 + 2\"");
+        super("math", ":heavy_division_sign: | Math", ["Information"], "{prefix}math [<math expression> <math expression>...]\n{prefix}math average (<number> <number> <number>)\n{prefix}math random <min> <max>", "Use {prefix}math when you're to lazy to *actually* do math! Example: {prefix}math \"2 + 2\"");
         this.client = client
     }
 
