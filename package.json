@@ -4,8 +4,7 @@
   "description": "A discord bot",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "prepublish": "node src/utils/configSetup.js"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",

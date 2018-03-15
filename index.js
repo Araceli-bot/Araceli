@@ -8,7 +8,7 @@ if (fs.existsSync('./config.js') === true) {
 	console.log('Configuration file loaded and exists!');
 } else {
 	if (fs.existsSync('./config.js') === false) {
-		console.error('Configuration file does not exist!\nPlease run (node ./src/utls/configSetup.js) to setup the configuration.');
+		console.error('Configuration file does not exist!\nPlease run (node ./src/utils/configSetup.js) to setup the configuration.');
 		process.exit(1);
 	}
 }
