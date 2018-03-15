@@ -4,13 +4,5 @@ node_js:
   - "9.6.1"
 install:
   - npm install
-  - echo "token"
-  - echo "prefix"
-  - echo "db"
-  - echo "dbPort"
-  - echo "dbauthMechanism"
-  - echo "dbName"
-  - echo "dbUser"
-  - echo "dbPass"
 script:
   - npm test
