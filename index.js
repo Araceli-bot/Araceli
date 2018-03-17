@@ -11,6 +11,10 @@ if(process.env.travis === undefined){
     token = process.env.token;
     pref = process.env.prefix
 }
+//CleverBot
+const Cleverbot = require("cleverbot.io");
+const clbot = new Cleverbot(config.clbotAPIUser, config.clbotAPIKey);
+
 const removePunctuation = require('remove-punctuation');
 var mcData = require("minecraft-data")("1.8.8");
 var html2json = require('html2json').html2json;
@@ -137,6 +141,17 @@ this.lolReplace = [
 ];
 
 client.on('message', message => {
+	
+	//CleverBot
+	clbot.setNick(config.clbotNick);	if(message.content.startsWith(prefix + prefix)) {
+		if(message.author.bot) return;
+		const clbottext = message.content;
+	 clbot.ask(clbottext, function (err, response) {
+	 	message.channel.startTyping();
+	 	message.channel.send(response).catch(console.error);
+		message.channel.stopTyping();
+	 })
+	};
     if(message.content.toLowerCase() == "lol" || message.content.toLowerCase() == "lel"){
         message.channel.send("What they meant by that is: " + this.lolReplace[Math.floor(Math.random() * (this.lolReplace.length - 1))]);
     } else {

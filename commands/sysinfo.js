@@ -1,7 +1,9 @@
-const Discord = require('discord.js');
+const { Discord, version } = require("discord.js");
 const Command = require("../src/Command");
 const si = require('systeminformation');
 const RB = require('readable-bytes');
+const moment = require('moment');
+require("moment-duration-format");
 
 class sysinfo extends Command
 {
@@ -38,8 +40,27 @@ class sysinfo extends Command
                     }
                     var discordString = "Discord:\n     Guilds: " + guilds.length + "\n     Users: " + members + "\n\n";
                     description += discordString;
-                    var commandString = "Commands:\n    Number: " + bot.CommandManager.commands.length;
+                    var commandString = "Commands:\n    Number: " + bot.CommandManager.commands.length + "\n\n";
                     description += commandString;
+                    // Bot Process Information
+                    var botProcess = '**-=>[Developer Debug]<=-**' + "\n\n";
+                    description += botProcess;
+                    var botProcessA = 'DiscordJS Version: ' + `v${version}` + "\n\n";
+                    description += botProcessA;
+                    var botProcessB = 'NodeJS Version: ' + `${process.version}` + "\n\n";
+                    description += botProcessB;
+                    var botProcessC = 'Memory Usage: ' + `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB` + "\n\n";
+                    description += botProcessC;
+                    const uptime = moment.duration(cmd.client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
+                    var botProcessD = 'Uptime: ' + `${uptime}` + "\n\n";
+                    description += botProcessD;
+                    var botProcessE = 'Users: ' + `${cmd.client.users.size.toLocaleString()}` + "\n\n";
+                    description += botProcessE;
+                    var botProcessF = 'Servers: ' + `${cmd.client.guilds.size.toLocaleString()}` + "\n\n";
+                    description += botProcessF;
+                    var botProcessG = 'Channels: ' + `${cmd.client.channels.size.toLocaleString()}` + "\n\n";
+                    description += botProcessG;
+                    
                     var embed = cmd.embed(description);
                     message.channel.send({embed});
                 });
